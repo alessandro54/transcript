@@ -133,3 +133,6 @@ dmypy.json
 *_cleaned.*
 temp/
 tmp/
+
+# Database
+bot.db

@@ -1,5 +1,6 @@
 annotated-types==0.7.0
 anyio==4.12.1
+-e git+ssh://git@github.com/alessandro54/transcript.git@27fb4f5e6d722a1e376a5a08d4e42a00f5453b0d#egg=audio_transcription_bot
 av==16.1.0
 certifi==2026.1.4
 cffi==2.0.0

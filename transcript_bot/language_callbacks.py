@@ -6,6 +6,7 @@ from telegram import Update
 from telegram.ext import ContextTypes
 
 from .utils import set_user_language, LANGUAGES
+from .logger import log_user_action
 
 logger = logging.getLogger(__name__)
 
@@ -14,6 +15,8 @@ async def handle_language_callback(update: Update, context: ContextTypes.DEFAULT
     """Handle language selection button clicks."""
     query = update.callback_query
     await query.answer()
+
+    user = update.effective_user
 
     # Extract language from callback data
     lang_code = query.data.replace("lang_", "")
@@ -24,6 +27,9 @@ async def handle_language_callback(update: Update, context: ContextTypes.DEFAULT
 
         # Get language name for confirmation
         lang_name = LANGUAGES[lang_code]
+
+        # Log the language change
+        log_user_action(user.id, user.username, f"changed language to {lang_code}", f" ({lang_name.split(' ', 1)[1]})")
 
         # Update the message to show confirmation
         await query.edit_message_text(
