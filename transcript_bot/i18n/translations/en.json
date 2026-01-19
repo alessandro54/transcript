@@ -1,0 +1,44 @@
+{
+  "commands": {
+    "start": {
+      "welcome": "🎙️ *Audio Transcription Bot*\n\nSend me a voice message or audio file and I'll transcribe it for you.\n\n*Supported formats:*\n• Voice messages 🎤\n• Audio files (MP3, WAV, OGG, OPUS, M4A, AAC, FLAC)\n• Video notes (circular videos)\n\n*Available commands:*\n/setlang - Change language\n/command - See all commands\n/history - View transcription history\n\n*Current language:* {current_lang}",
+      "error": "❌ Error sending welcome message"
+    },
+    "setlang": {
+      "select": "🌍 *Select your language:*",
+      "changed": "✅ Language changed to {lang_name}",
+      "error": "❌ Error changing language"
+    },
+    "command": {
+      "list": "📋 *Available commands:*\n\n/start - Welcome message\n/setlang - Change transcription language\n/command - Show this command list\n/history - View your transcription history\n\n*Send any audio or voice message to get started!*",
+      "error": "❌ Error showing commands"
+    },
+    "history": {
+      "title": "📊 *Your Transcription History*\n\n",
+      "stats": "📈 *Statistics:*\n• Total transcriptions: {total}\n• Total duration: {duration:.1f} seconds\n• Favorite language: {fav_lang}\n\n",
+      "recent": "📝 *Recent transcriptions:*\n\n",
+      "empty": "📭 You don't have any transcriptions yet. Send a voice message to get started!",
+      "error": "❌ Error getting history"
+    },
+    "transcription": {
+      "processing": "⏳ Processing...",
+      "generating_summary": "📝 Generating summary...",
+      "no_speech": "❌ Could not transcribe any speech from the audio.",
+      "error": "❌ Error transcribing audio: {error}\n\nYou can retry using the button below (file kept for 5 minutes):",
+      "retry_button": "🔄 Retry Transcription",
+      "summarize_button": "📝 Summarize",
+      "full_transcript_button": "📄 Full Transcript",
+      "sent_button": "✅ Transcript Sent",
+      "file_sent": "✅ Transcription file sent!",
+      "busy": "⏳ Bot is currently processing another audio. Please wait a moment...",
+      "too_long": "❌ Audio too long: {duration:.1f} seconds\n\nMaximum allowed: {max_duration} minutes\n\nPlease split your audio into shorter segments.",
+      "unsupported_format": "❌ Unsupported format: `{mime_type}`\n\n*Supported formats:*\n• MP3, WAV, OGG, OPUS, M4A, AAC, FLAC\n• Voice messages and video notes\n\nPlease convert your audio to one of these formats."
+    },
+    "messages": {
+      "file_caption": "📄 Full transcription",
+      "already_sent": "Transcript already sent!",
+      "expired": "❌ Error: Transcript expired. Please send the audio again.",
+      "invalid_id": "❌ Error: Invalid transcript ID"
+    }
+  }
+}

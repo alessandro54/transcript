@@ -1,0 +1,44 @@
+{
+  "commands": {
+    "start": {
+      "welcome": "🎙️ *Bot de Transcripción de Audio*\n\nEnvíame un mensaje de voz o un archivo de audio y lo transcribiré para ti.\n\n*Formatos compatibles:*\n• Mensajes de voz 🎤\n• Archivos de audio (MP3, WAV, OGG, OPUS, M4A, AAC, FLAC)\n• Notas de video (videos circulares)\n\n*Comandos disponibles:*\n/setlang - Cambiar idioma\n/command - Ver todos los comandos\n/history - Ver historial de transcripciones\n\n*Idioma actual:* {current_lang}",
+      "error": "❌ Error al enviar el mensaje de bienvenida"
+    },
+    "setlang": {
+      "select": "🌍 *Selecciona tu idioma:*",
+      "changed": "✅ Idioma cambiado a {lang_name}",
+      "error": "❌ Error al cambiar el idioma"
+    },
+    "command": {
+      "list": "📋 *Comandos disponibles:*\n\n/start - Mensaje de bienvenida\n/setlang - Cambiar idioma de transcripción\n/command - Mostrar esta lista de comandos\n/history - Ver tu historial de transcripciones\n\n*Envía cualquier audio o mensaje de voz para comenzar!*",
+      "error": "❌ Error al mostrar comandos"
+    },
+    "history": {
+      "title": "📊 *Tu Historial de Transcripciones*\n\n",
+      "stats": "📈 *Estadísticas:*\n• Total de transcripciones: {total}\n• Duración total: {duration:.1f} segundos\n• Idioma preferido: {fav_lang}\n\n",
+      "recent": "📝 *Transcripciones recientes:*\n\n",
+      "empty": "📭 No tienes transcripciones aún. Envía un mensaje de voz para comenzar!",
+      "error": "❌ Error al obtener el historial"
+    },
+    "transcription": {
+      "processing": "⏳ Procesando...",
+      "generating_summary": "📝 Generando resumen...",
+      "no_speech": "❌ No se pudo transcribir audio del mensaje.",
+      "error": "❌ Error al transcribir el audio: {error}\n\nPuedes reintentar usando el botón de abajo (archivo guardado por 5 minutos):",
+      "retry_button": "🔄 Reintentar Transcripción",
+      "summarize_button": "📝 Resumir",
+      "full_transcript_button": "📄 Transcripción Completa",
+      "sent_button": "✅ Transcripción Enviada",
+      "file_sent": "✅ ¡Archivo de transcripción enviado!",
+      "busy": "⏳ El bot está procesando otro audio. Por favor espera un momento...",
+      "too_long": "❌ Audio demasiado largo: {duration:.1f} segundos\n\nDuración máxima permitida: {max_duration} minutos\n\nPor favor divide tu audio en segmentos más cortos.",
+      "unsupported_format": "❌ Formato no compatible: `{mime_type}`\n\n*Formatos compatibles:*\n• MP3, WAV, OGG, OPUS, M4A, AAC, FLAC\n• Mensajes de voz y notas de video\n\nPor favor convierte tu audio a uno de estos formatos."
+    },
+    "messages": {
+      "file_caption": "📄 Transcripción completa",
+      "already_sent": "¡Transcripción ya enviada!",
+      "expired": "❌ Error: La transcripción ha expirado. Por favor envía el audio nuevamente.",
+      "invalid_id": "❌ Error: ID de transcripción inválido"
+    }
+  }
+}

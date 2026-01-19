@@ -129,7 +129,3 @@ def log_api_call(service: str, endpoint: str, status: str = "success", duration:
     print(f"{Colors.DIM_GRAY}{timestamp}{Colors.RESET} {Colors.BG_CYAN}{Colors.BLACK} API   {Colors.RESET} "
           f"{Colors.CYAN}{service}{Colors.RESET} {Colors.WHITE}{endpoint}{Colors.RESET}"
           f"{duration_str} {status_color}●{Colors.RESET}")
-
-
-# Add missing color
-Colors.DIM_GRAY = '\033[90m'

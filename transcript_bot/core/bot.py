@@ -16,11 +16,9 @@ from telegram.ext import (
     filters,
 )
 
-from .handlers import start, handle_voice, handle_audio, handle_video_note, setlang, command, history
-from .callbacks import handle_retry_callback
-from .language_callbacks import handle_language_callback
-from .summary_callbacks import handle_summarize_callback, handle_show_full_callback, handle_transcript_full_callback, handle_disabled_callback
-from .logger import setup_logging, log_user_action
+from ..handlers import start, handle_voice, handle_audio, handle_video_note, setlang, command, history
+from ..handlers.callbacks import handle_retry_callback, handle_language_callback, handle_summarize_callback, handle_show_full_callback, handle_transcript_full_callback, handle_disabled_callback
+from ..utils.logger import setup_logging, log_user_action
 
 # Setup enhanced logging
 setup_logging()

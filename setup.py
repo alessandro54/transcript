@@ -32,12 +32,12 @@ setup(
     install_requires=requirements,
     entry_points={
         "console_scripts": [
-            "transcription-bot=transcript_bot.cli:cli",
-            "transcript-bot=transcript_bot.bot:main",
+            "transcription-bot=transcript_bot.core.cli:cli",
+            "transcript-bot=transcript_bot.core.bot:main",
         ],
     },
     include_package_data=True,
     package_data={
-        "transcript_bot": ["*.py"],
+        "transcript_bot": ["**/*.py", "i18n/translations/*.json"],
     },
 )
