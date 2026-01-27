@@ -24,12 +24,12 @@ async def handle_transcript_full_callback(update: Update, context: ContextTypes.
     transcript_id = parts[2] if len(parts) > 2 else None
 
     if not transcript_id:
-        await query.edit_message_text(t("messages.invalid_id", "es"))
+        await query.edit_message_text(t("commands.messages.invalid_id", "es"))
         return
 
     # Get transcript from temporary storage
     if transcript_id not in temp_transcripts:
-        await query.edit_message_text(t("messages.expired", "es"))
+        await query.edit_message_text(t("commands.messages.expired", "es"))
         return
 
     transcript_data = temp_transcripts[transcript_id]
@@ -53,7 +53,7 @@ async def handle_transcript_full_callback(update: Update, context: ContextTypes.
             chat_id=update.effective_chat.id,
             document=f,
             filename="transcription.txt",
-            caption=t("messages.file_caption", user_lang)
+            caption=t("commands.messages.file_caption", user_lang)
         )
 
     # Clean up
@@ -61,7 +61,7 @@ async def handle_transcript_full_callback(update: Update, context: ContextTypes.
 
     # Update button to show it was sent, but keep the summary
     keyboard = [[InlineKeyboardButton(
-        t("transcription.sent_button", user_lang),
+        t("commands.transcription.sent_button", user_lang),
         callback_data="sent_disabled"
     )]]
     reply_markup = InlineKeyboardMarkup(keyboard)

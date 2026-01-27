@@ -22,12 +22,12 @@ async def handle_summarize_callback(update: Update, context: ContextTypes.DEFAUL
     transcript_id = parts[2] if len(parts) > 2 else None
 
     if not transcript_id:
-        await query.edit_message_text(t("messages.invalid_id", "es"))
+        await query.edit_message_text(t("commands.messages.invalid_id", "es"))
         return
 
     # Get transcript from temporary storage
     if transcript_id not in temp_transcripts:
-        await query.edit_message_text(t("messages.expired", "es"))
+        await query.edit_message_text(t("commands.messages.expired", "es"))
         return
 
     transcript_data = temp_transcripts[transcript_id]
@@ -35,7 +35,7 @@ async def handle_summarize_callback(update: Update, context: ContextTypes.DEFAUL
     user_lang = transcript_data["language"]
 
     # Show summary immediately
-    await query.edit_message_text(t("transcription.generating_summary", user_lang))
+    await query.edit_message_text(t("commands.transcription.generating_summary", user_lang))
 
     # Generate summary
     summary = summarize_text(text, user_lang)
@@ -43,7 +43,7 @@ async def handle_summarize_callback(update: Update, context: ContextTypes.DEFAUL
     if summary:
         # Create keyboard for full transcript
         keyboard = [[InlineKeyboardButton(
-            t("transcription.full_transcript_button", user_lang),
+            t("commands.transcription.full_transcript_button", user_lang),
             callback_data=f"transcript_full_{transcript_id}"
         )]]
         reply_markup = InlineKeyboardMarkup(keyboard)
@@ -54,4 +54,4 @@ async def handle_summarize_callback(update: Update, context: ContextTypes.DEFAUL
             parse_mode='Markdown'
         )
     else:
-        await query.edit_message_text(t("transcription.no_speech", user_lang))
+        await query.edit_message_text(t("commands.transcription.no_speech", user_lang))

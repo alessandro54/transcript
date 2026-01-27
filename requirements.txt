@@ -1,6 +1,5 @@
 annotated-types==0.7.0
 anyio==4.12.1
--e git+ssh://git@github.com/alessandro54/transcript.git@27fb4f5e6d722a1e376a5a08d4e42a00f5453b0d#egg=audio_transcription_bot
 av==16.1.0
 certifi==2026.1.4
 cffi==2.0.0
@@ -10,7 +9,6 @@ contourpy==1.3.3
 ctranslate2==4.6.3
 cycler==0.12.1
 distro==1.9.0
-dotenv==0.9.9
 faster-whisper==1.2.1
 filelock==3.20.3
 flatbuffers==25.12.19

@@ -30,7 +30,7 @@ async def handle_retry_callback(update: Update, context: ContextTypes.DEFAULT_TY
     retry_id = query.data.replace("retry_", "")
 
     if retry_id not in failed_transcriptions:
-        await query.edit_message_text(t("messages.expired", user_lang))
+        await query.edit_message_text(t("commands.messages.expired", user_lang))
         return
 
     retry_data = failed_transcriptions[retry_id]
@@ -58,12 +58,12 @@ async def handle_retry_callback(update: Update, context: ContextTypes.DEFAULT_TY
             await query.edit_message_text(f"✅ Transcription successful:\n\n{text}")
         else:
             log_transcription(user.id, user.username, "retry_" + retry_id, None, user_lang, "error: no speech")
-            await query.edit_message_text(t("transcription.no_speech", user_lang))
+            await query.edit_message_text(t("commands.transcription.no_speech", user_lang))
 
     except Exception as e:
         logger.error(f"Retry transcription error: {e}")
         log_transcription(user.id, user.username, "retry_" + retry_id, None, user_lang, "error")
-        await query.edit_message_text(t("transcription.error", user_lang, error=str(e)))
+        await query.edit_message_text(t("commands.transcription.error", user_lang, error=str(e)))
 
     finally:
         # Clean up retry data

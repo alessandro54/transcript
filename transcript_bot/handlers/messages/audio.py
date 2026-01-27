@@ -22,7 +22,7 @@ async def handle_audio(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     if audio.mime_type not in SUPPORTED_FORMATS:
         log_user_action(user.id, user.username, "sent unsupported audio", f" ({audio.mime_type})")
         await update.message.reply_text(
-            t("transcription.unsupported_format", user_lang, mime_type=audio.mime_type),
+            t("commands.transcription.unsupported_format", user_lang, mime_type=audio.mime_type),
             parse_mode='Markdown'
         )
         return

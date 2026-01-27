@@ -11,7 +11,7 @@ async def handle_disabled_callback(update: Update, context: ContextTypes.DEFAULT
     """Handle disabled button clicks."""
     query = update.callback_query
     user_lang = get_user_language(update.effective_user.id)
-    await query.answer(t("messages.already_sent", user_lang), show_alert=True)
+    await query.answer(t("commands.messages.already_sent", user_lang), show_alert=True)
 
 
 async def handle_show_full_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:

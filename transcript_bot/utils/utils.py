@@ -134,7 +134,7 @@ async def transcribe_message(
     if is_processing:
         user_lang = get_user_language(update.effective_user.id)
         await update.message.reply_text(
-            t("transcription.busy", user_lang),
+            t("commands.transcription.busy", user_lang),
             reply_to_message_id=update.message.message_id
         )
         return
@@ -166,7 +166,7 @@ async def transcribe_message(
                 os.unlink(tmp_path)
                 log_transcription(user.id, user.username, filename, duration, "unknown", "error: too long")
                 await update.message.reply_text(
-                    t("transcription.too_long", user_lang,
+                    t("commands.transcription.too_long", user_lang,
                       duration=duration,
                       max_duration=MAX_DURATION // 60),
                     reply_to_message_id=update.message.message_id
@@ -175,7 +175,7 @@ async def transcribe_message(
 
             # Send processing message
             processing_message = await update.message.reply_text(
-                t("transcription.processing", user_lang),
+                t("commands.transcription.processing", user_lang),
                 reply_to_message_id=update.message.message_id
             )
 
@@ -226,7 +226,7 @@ async def transcribe_message(
 
                 # Handle summarization based on duration
                 if duration >= 180:  # 3+ minutes - auto summarize
-                    await processing_message.edit_text(t("transcription.generating_summary", user_lang))
+                    await processing_message.edit_text(t("commands.transcription.generating_summary", user_lang))
 
                     summary = summarize_text(text, user_lang)
                     if summary:
@@ -243,7 +243,7 @@ async def transcribe_message(
 
                         # Add button for full transcript
                         keyboard.append([InlineKeyboardButton(
-                            t("transcription.full_transcript_button", user_lang),
+                            t("commands.transcription.full_transcript_button", user_lang),
                             callback_data=f"transcript_full_{transcript_id}"
                         )])
 
@@ -261,12 +261,12 @@ async def transcribe_message(
                         }
 
                         keyboard = [[InlineKeyboardButton(
-                            t("transcription.full_transcript_button", user_lang),
+                            t("commands.transcription.full_transcript_button", user_lang),
                             callback_data=f"transcript_full_{transcript_id}"
                         )]]
                         reply_markup = InlineKeyboardMarkup(keyboard)
                         await processing_message.edit_text(
-                            t("transcription.no_speech", user_lang),
+                            t("commands.transcription.no_speech", user_lang),
                             reply_markup=reply_markup
                         )
 
@@ -280,7 +280,7 @@ async def transcribe_message(
                     }
 
                     keyboard = [[InlineKeyboardButton(
-                        t("transcription.summarize_button", user_lang),
+                        t("commands.transcription.summarize_button", user_lang),
                         callback_data=f"summarize_short_{transcript_id}"
                     )]]
                     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -290,7 +290,7 @@ async def transcribe_message(
                     await processing_message.edit_text(text)
             else:
                 log_transcription(user.id, user.username, filename, duration, user_lang, "error: no speech")
-                await processing_message.edit_text(t("transcription.no_speech", user_lang))
+                await processing_message.edit_text(t("commands.transcription.no_speech", user_lang))
 
         except Exception as e:
             logger.error(f"Transcription error: {e}")
@@ -311,12 +311,12 @@ async def transcribe_message(
             failed_transcriptions[retry_id] = retry_data
 
             keyboard = [[InlineKeyboardButton(
-                t("transcription.retry_button", user_lang),
+                t("commands.transcription.retry_button", user_lang),
                 callback_data=f"retry_{retry_id}"
             )]]
             reply_markup = InlineKeyboardMarkup(keyboard)
 
-            error_msg = t("transcription.error", user_lang, error=str(e))
+            error_msg = t("commands.transcription.error", user_lang, error=str(e))
 
             if 'processing_message' in locals():
                 await processing_message.edit_text(
