@@ -1,0 +1,74 @@
+services:
+  # ============================================
+  # Production service (uses OpenAI Whisper API)
+  # ============================================
+  bot-prod:
+    build:
+      context: .
+      target: production
+    container_name: transcript-bot-prod
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - ENVIRONMENT=production
+    volumes:
+      - bot-data-prod:/app/data
+      - ./bot.db:/app/bot.db
+    profiles:
+      - prod
+
+  # ============================================
+  # Development service (uses local Whisper model)
+  # ============================================
+  bot-dev:
+    build:
+      context: .
+      target: development
+    container_name: transcript-bot-dev
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - ENVIRONMENT=development
+      - WHISPER_MODEL=${WHISPER_MODEL:-base}
+      - WHISPER_DEVICE=cpu
+    volumes:
+      - bot-data-dev:/app/data
+      - ./bot.db:/app/bot.db
+      # Mount source for live development
+      - ./transcript_bot:/app/transcript_bot:ro
+    profiles:
+      - dev
+
+  # ============================================
+  # Development with GPU support (NVIDIA)
+  # ============================================
+  bot-dev-gpu:
+    build:
+      context: .
+      target: development
+    container_name: transcript-bot-dev-gpu
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - ENVIRONMENT=development
+      - WHISPER_MODEL=${WHISPER_MODEL:-large-v3}
+      - WHISPER_DEVICE=cuda
+    volumes:
+      - bot-data-dev:/app/data
+      - ./bot.db:/app/bot.db
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    profiles:
+      - dev-gpu
+
+volumes:
+  bot-data-prod:
+  bot-data-dev:
